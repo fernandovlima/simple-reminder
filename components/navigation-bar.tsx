@@ -6,11 +6,7 @@ export function NavigationBar() {
     <nav
       className={"flex h-[60px] w-full items-center justify-between p-4 px-8"}
     >
-      <h1
-        className={
-          "bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 bg-clip-text text-2xl font-bold text-transparent"
-        }
-      >
+      <h1 className={"green-blue-gradient text-2xl font-bold tracking-wide"}>
         Simple Reminder
       </h1>
 

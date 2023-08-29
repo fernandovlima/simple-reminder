@@ -36,7 +36,9 @@ export default function RootLayout({
               }
             >
               <NavigationBar />
-              {children}
+              <main className={"flex w-full flex-grow p-4 dark:bg-slate-900"}>
+                {children}
+              </main>
             </div>
           </ThemeProvider>
         </body>
