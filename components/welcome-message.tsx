@@ -7,7 +7,7 @@ export async function WelcomeMessage() {
   if (!user) return <div>error</div>;
 
   return (
-    <div className={""}>
+    <div className={"mb-4"}>
       <h1 className={"text-2xl"}>
         Welcome,{" "}
         <span

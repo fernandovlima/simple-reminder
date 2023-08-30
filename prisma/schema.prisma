@@ -16,6 +16,19 @@ model Collection {
   userId    String
   color     String
   createdAt DateTime @default(now())
+  tasks     Task[]
 
   @@unique([name, userId])
+}
+
+model Task {
+  id        String    @id @default(nanoid())
+  content   String
+  userId    String
+  done      Boolean   @default(false)
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+
+  collectionId String
+  Collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
 }

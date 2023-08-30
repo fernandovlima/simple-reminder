@@ -1,27 +1,23 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
-export const metadata = {
-  title: "Next.js 13 with Clerk",
-};
-
 import { Arimo } from "next/font/google";
 import { NavigationBar } from "@/components/navigation-bar";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
+import { ReactNode } from "react";
 
 // If loading a variable font, you don't need to specify the font weight
 const font = Arimo({
   subsets: ["latin"],
   display: "swap",
 });
+export const metadata = {
+  title: "Reminders",
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <ClerkProvider>
       <html
