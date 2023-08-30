@@ -48,8 +48,6 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
     },
   });
 
-  console.log("form", form.getValues());
-
   const router = useRouter();
 
   const openChangeWrapper = (value: boolean) => {
@@ -58,13 +56,13 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
   };
 
   const onSubmit = async (data: createTaskSchemaType) => {
-    console.log(data);
     try {
       await createTask(data);
 
       toast({
         title: "Success",
         description: "Task created successfully!!",
+        variant: "success",
       });
 
       openChangeWrapper(false);

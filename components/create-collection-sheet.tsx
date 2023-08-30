@@ -65,6 +65,7 @@ export function CreateCollectionSheet({ open, onOpenChange }: Props) {
       toast({
         title: "Success",
         description: "Collection created successfully!",
+        variant: "success",
       });
     } catch (e: any) {
       // Show toast
@@ -98,7 +99,7 @@ export function CreateCollectionSheet({ open, onOpenChange }: Props) {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={"Collection Name"} />
+                    <Input {...field} placeholder={"eg. Personal"} />
                   </FormControl>
                 </FormItem>
               )}

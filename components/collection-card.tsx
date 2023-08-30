@@ -59,6 +59,7 @@ export function CollectionCard({ collection }: Props) {
       toast({
         title: "Success",
         description: "Collection deleted successfully",
+        variant: "success",
       });
       router.refresh();
     } catch (e) {
@@ -126,8 +127,11 @@ export function CollectionCard({ collection }: Props) {
             <p>Created at {collection.createdAt.toLocaleDateString("en-US")}</p>
 
             {isLoading && (
-              <div>
-                Deleting <LoaderIcon className={"h-3 w-3 text-red-500"} />{" "}
+              <div className={"flex items-center text-red-500"}>
+                Deleting
+                <LoaderIcon
+                  className={"ml-2 h-3 w-3 animate-spin text-red-500"}
+                />
               </div>
             )}
 
