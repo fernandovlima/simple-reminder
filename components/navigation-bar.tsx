@@ -5,7 +5,7 @@ export function NavigationBar() {
   return (
     <nav
       className={
-        "flex h-[60px] w-full items-center justify-between border-b-[1px] border-slate-600 bg-slate-950 p-4 px-8"
+        "flex h-[60px] w-full items-center justify-between border-b-[1px] border-b-slate-300 bg-white p-4 px-8 dark:border-b-slate-600 dark:bg-slate-950"
       }
     >
       <h1

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ReactNode } from "react";
+import { useTheme } from "next-themes";
 
 // If loading a variable font, you don't need to specify the font weight
 const font = Arimo({
@@ -27,13 +28,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <body>
           <ThemeProvider>
-            <div
-              className={
-                "flex min-h-screen w-full flex-col items-center dark:bg-slate-900"
-              }
-            >
+            <div className={"flex min-h-screen w-full flex-col items-center"}>
               <NavigationBar />
-              <main className={"flex w-full flex-grow p-4 dark:bg-slate-900"}>
+              <main
+                className={
+                  "flex w-full flex-grow items-center justify-center p-4 dark:bg-slate-900"
+                }
+              >
                 {children}
               </main>
             </div>
