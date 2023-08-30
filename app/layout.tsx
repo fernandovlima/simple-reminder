@@ -9,6 +9,7 @@ import { Arimo } from "next/font/google";
 import { NavigationBar } from "@/components/navigation-bar";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 // If loading a variable font, you don't need to specify the font weight
 const font = Arimo({
@@ -32,7 +33,7 @@ export default function RootLayout({
           <ThemeProvider>
             <div
               className={
-                "flex min-h-screen w-full flex-col items-center dark:bg-slate-950"
+                "flex min-h-screen w-full flex-col items-center dark:bg-slate-900"
               }
             >
               <NavigationBar />
@@ -40,6 +41,7 @@ export default function RootLayout({
                 {children}
               </main>
             </div>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

@@ -10,7 +10,11 @@ export async function WelcomeMessage() {
     <div className={""}>
       <h1 className={"text-2xl"}>
         Welcome,{" "}
-        <span className={"fuchsia-cyan-gradient font-bold"}>
+        <span
+          className={
+            "fuchsia-cyan-gradient bg-clip-text font-bold text-transparent"
+          }
+        >
           {user?.firstName}
         </span>
       </h1>

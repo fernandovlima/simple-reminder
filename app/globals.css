@@ -4,9 +4,9 @@
 
 @layer components {
  .green-blue-gradient {
-   @apply bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 bg-clip-text text-transparent;
+   @apply bg-gradient-to-r from-teal-500 via-sky-500 to-violet-500 ;
  }
     .fuchsia-cyan-gradient {
-        @apply bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent;
+        @apply bg-gradient-to-r from-fuchsia-500 to-cyan-500;
     }
 }

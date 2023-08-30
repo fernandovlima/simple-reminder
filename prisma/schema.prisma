@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Collection {
-  id        String   @id @default(uuid())
+  id        String   @id @default(nanoid())
   name      String
   userId    String
   color     String
