@@ -13,8 +13,6 @@ export async function createTask(data: createTaskSchemaType) {
 
   const { content, expiresAt, collectionId } = data;
 
-  console.log(data);
-
   return await prisma.task.create({
     data: {
       userId: user.id,
@@ -25,6 +23,21 @@ export async function createTask(data: createTaskSchemaType) {
           id: collectionId,
         },
       },
+    },
+  });
+}
+
+export async function deleteTask(id: string) {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new Error("user not found");
+  }
+
+  return await prisma.task.delete({
+    where: {
+      id,
+      userId: user.id,
     },
   });
 }

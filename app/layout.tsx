@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ReactNode } from "react";
 import { useTheme } from "next-themes";
+import { dark } from "@clerk/themes";
 
 // If loading a variable font, you don't need to specify the font weight
 const font = Arimo({
@@ -20,7 +21,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html
         lang="en"
         className={cn(font.className, "dark")}

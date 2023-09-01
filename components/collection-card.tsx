@@ -33,6 +33,7 @@ import { deleteCollection } from "@/actions/collection";
 import { Progress } from "@/components/ui/progress";
 import CreateTaskDialog from "@/components/create-task-dialog";
 import TaskCard from "@/components/task-card";
+import { motion } from "framer-motion";
 
 type Props = {
   collection: Collection & {
@@ -79,7 +80,12 @@ export function CollectionCard({ collection }: Props) {
         collection={collection}
       />
 
-      <Collapsible open={isOpen} onOpenChange={setIsOpen} defaultOpen>
+      <Collapsible
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        defaultOpen
+        className={""}
+      >
         <CollapsibleTrigger asChild>
           <Button
             variant={"ghost"}
@@ -90,91 +96,115 @@ export function CollectionCard({ collection }: Props) {
             )}
           >
             <span className="font-bold text-white">{collection.name}</span>
-            {!isOpen && <ArrowDown className="h-6 w-6" />}
-            {isOpen && <ArrowUp className="h-6 w-6" />}
+            {!isOpen && <ArrowDown className="h-6 w-6 text-white" />}
+            {isOpen && <ArrowUp className="h-6 w-6 text-white" />}
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className="flex flex-col rounded-b-md shadow-lg dark:bg-neutral-900">
-          {tasks.length === 0 && (
-            <Button
-              variant={"ghost"}
-              className="flex items-center justify-center gap-1 rounded-none p-8 py-12"
-              onClick={() => setShowCreateModal(true)}
+
+        {isOpen && (
+          <CollapsibleContent
+            className="dark:bg-slate-950i flex flex-col rounded-b-md shadow-lg dark:hover:bg-slate-900"
+            asChild
+          >
+            <motion.div
+              initial={{
+                opacity: 0,
+                height: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "auto",
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
             >
-              <p>There are no tasks yet:</p>
-              <span
-                className={cn(
-                  "bg-clip-text text-sm text-transparent",
-                  CollectionColors[collection.color as CollectionColor],
-                )}
-              >
-                Create one
-              </span>
-            </Button>
-          )}
-          {tasks.length > 0 && (
-            <>
-              <Progress className="rounded-none" value={progress} />
-              <div className="flex flex-col gap-3 p-4">
-                {tasks.map((task) => (
-                  <TaskCard key={task.id} task={task} />
-                ))}
-              </div>
-            </>
-          )}
-          <Separator />
-          <footer className="flex h-[40px] items-center justify-between p-[2px] px-4 text-xs text-neutral-500 ">
-            <p>Created at {collection.createdAt.toLocaleDateString("en-US")}</p>
-
-            {isLoading && (
-              <div className={"flex items-center text-red-500"}>
-                Deleting
-                <LoaderIcon
-                  className={"ml-2 h-3 w-3 animate-spin text-red-500"}
-                />
-              </div>
-            )}
-
-            {!isLoading && (
-              <div>
+              {tasks.length === 0 && (
                 <Button
-                  size={"icon"}
                   variant={"ghost"}
+                  className="flex items-center justify-center gap-1 rounded-none p-8 py-12 "
                   onClick={() => setShowCreateModal(true)}
                 >
-                  <PlusIcon className={"h-4 w-4 text-slate-400"} />
+                  <p>There are no tasks yet:</p>
+                  <span
+                    className={cn(
+                      "bg-clip-text text-sm text-transparent",
+                      CollectionColors[collection.color as CollectionColor],
+                    )}
+                  >
+                    Create one
+                  </span>
                 </Button>
+              )}
+              {tasks.length > 0 && (
+                <>
+                  <Progress className="rounded-none" value={progress} />
+                  <div className="flex flex-col gap-4 p-4">
+                    {tasks.map((task) => (
+                      <TaskCard key={task.id} task={task} />
+                    ))}
+                  </div>
+                </>
+              )}
+              <Separator />
 
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button size={"icon"} variant={"ghost"}>
-                      <TrashIcon className={"h-4 w-4 text-red-500"} />
+              <footer className="flex h-[40px] items-center justify-between p-[2px] px-4 text-xs text-slate-500 ">
+                <p>
+                  Created at {collection.createdAt.toLocaleDateString("en-US")}
+                </p>
+
+                {isLoading && (
+                  <div className={"flex items-center text-red-500"}>
+                    Deleting
+                    <LoaderIcon
+                      className={"ml-2 h-3 w-3 animate-spin text-red-500"}
+                    />
+                  </div>
+                )}
+
+                {!isLoading && (
+                  <div>
+                    <Button
+                      size={"icon"}
+                      variant={"ghost"}
+                      onClick={() => setShowCreateModal(true)}
+                    >
+                      <PlusIcon className={"h-4 w-4 text-slate-400"} />
                     </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogTitle>
-                      Are you absolutely sure?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      your collection and all tasks inside it.
-                    </AlertDialogDescription>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => {
-                          startTransition(removeCollection);
-                        }}
-                      >
-                        Proceed
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            )}
-          </footer>
-        </CollapsibleContent>
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button size={"icon"} variant={"ghost"}>
+                          <TrashIcon className={"h-4 w-4 text-red-500"} />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogTitle>
+                          Are you absolutely sure?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete your collection and all tasks inside it.
+                        </AlertDialogDescription>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              startTransition(removeCollection);
+                            }}
+                          >
+                            Proceed
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                )}
+              </footer>
+            </motion.div>
+          </CollapsibleContent>
+        )}
       </Collapsible>
     </>
   );

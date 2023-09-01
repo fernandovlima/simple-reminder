@@ -2,8 +2,8 @@ import { CollectionColors } from "@/lib/constants";
 import { z } from "zod";
 
 export const createCollectionSchema = z.object({
-  name: z.string().min(4, {
-    message: "Collection name must be at least 4 characters",
+  name: z.string().min(3, {
+    message: "Collection name must be at least 3 characters",
   }),
   color: z
     .string()
