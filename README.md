@@ -11,11 +11,10 @@
 - Progress bar for reminders
 
 ## Tech Stack
-- NextJS
+- NextJS (server actions)
 - ReactJS
 - TailwindCSS
 - Clerk (Auth)
-- Sqlite3 (Database)
 - Prisma (ORM)
 - Vercel (Deployment)
 
