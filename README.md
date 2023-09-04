@@ -2,7 +2,7 @@
  ![Dashboard](reminder-dashboard.png)
 
 ### Online Demo
-[See Demo](https://simple-reminder-55pgzap6a-fernandovlima.vercel.app/dashboard)
+[See Demo](https://simple-reminder.vercel.app/dashboard)
 
 ## Features
 - Auth with Clerk
